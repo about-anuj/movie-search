@@ -1,0 +1,26 @@
+.set-img-about{
+	background-image: url("about_background.jpg");
+	height: 800px;
+}
+body{
+	margin: 0px;
+}
+h1{
+    text-align: center;
+     font-family: Garamond, serif;
+      margin-top: 0px;
+      color: ghostwhite;
+      padding-top: 12px;
+}
+h3{
+    
+     font-family: Garamond, serif;
+      margin-top: 0px;
+      color: #e8d3d3;
+      padding-top: 12px;
+}
+a{
+	color: white;
+	font-size: 20px;
+	text-align: center;
+}

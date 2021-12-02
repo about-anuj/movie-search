@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html id="top">
+<head>
+	<title>Movie Finder</title>
+	<link rel="stylesheet" type="text/css" href="movie.css">
+	<script type="text/javascript" src="movie.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+   <div class="content">
+      <header class="movie_header">
+          <span class="logo-img">
+            <img src="download (1).png" height="70px">
+          </span>
+          
+          <nav>
+               <a href="#contact"  class="nav-tag" >contact</a>
+               <a href="about.html" class="nav-tag" id="about">About</a>
+               <a href="https://www.pvrcinemas.com/" class="nav-tag" target="_blank">Book Ticket</a>
+          </nav>
+
+     </header>
+      <div class="img">
+         
+     	<h1>Please enter your movie name</h1><br>
+           <div align="center">
+     	  <input id="srch" class="input_data" placeholder="movie name" align="center"><br><br>
+     	    <button onclick="find_movie()" id="button"><img src="search.png" height="12px" width="12px"> search</button><br><br>
+           </div>
+           <img id="myimg" class="my-img">
+            <div id="detail">
+               <h2>  Details of Movie:</h2>
+            </div >
+                 <div id="demo"  class="data">
+                      
+                 </div> 
+               <a href="#" id="link" target="_blank" style="color: #f2ebe6;">
+                    
+               </a>
+          
+      </div>
+      <span class="scroll">
+      <a href="#top" ><img src="scroll.png" class="scrol"></a>
+      </span>
+   </div>
+
+
+         <footer class="footer">
+          <h3 >Thank You BoltIot's mentor for giving such amazing knowladge</h3>
+         <div id="contact"  align="center">
+          <strong style="color:white ;">&#169;created by Anuj<br>Contact<br></strong>
+           <a href="https://www.facebook.com/anujsh2001" target="_blank"><img src="download.png" class="details"></a>
+            <a href="https://www.linkedin.com/in/anuj-sharma-169813194" target="_blank"><img src="linkdin.png" class="details"></a>
+         </div>
+         <div align="center">
+         <a href="#top" style="color: navajowhite;" ><strong>Go to Top</strong></a>
+          
+         </div>
+         </footer>
+
+
+         <script type="text/javascript">
+          function find_movie(){
+               str=document.getElementById('srch').value;
+               if(str=='')
+               {
+                    alert("please enter movie name first");
+                   windows.reload();
+               }
+               var movie_name = str.toLowerCase();
+               httpRequest=new XMLHttpRequest();
+               url='http://www.omdbapi.com/?i=tt3896198&apikey=169bdad8&t='+movie_name;
+               httpRequest.open("GET",url);
+               httpRequest.send();
+
+               httpRequest.onreadystatechange=function()
+               {
+                   if(this.readyState== 4 && this.status== 200)
+               {
+                   user_data=JSON.parse(this.responseText);
+                   ur=user_data.Poster;
+                   u='https://www.youtube.com/results?search_query='+user_data.Title;
+                   document.getElementById("detail").style.color="white";
+                   document.getElementById("myimg").src=ur;
+                   document.getElementById("demo").innerHTML="MOVIE NAME:\xa0\xa0"+user_data.Title+" \xa0\xa0\xa0\xa0\xa0\xa0  "+"Released Date: "+user_data.Released+"<br/><br/>length(In minutes): "+user_data.Runtime+"<br/><br/>Awards: "+user_data.Awards+"<br/><br/> Actors:\xa0\xa0"+user_data.Actors+"<br/><br/> imdbRating:\xa0\xa0"+user_data.imdbRating+"<br/><br/>Language:\xa0"+user_data.Language+"<br/><br/>Plot\xa0\xa0"+user_data.Plot;
+                 document.getElementById('link').href='https://www.youtube.com/results?search_query='+user_data.Title+'movie';
+                 document.getElementById("link").innerHTML="watch";
+               }
+               
+               }
+
+          }
+         </script>
+</body>
+</html>
